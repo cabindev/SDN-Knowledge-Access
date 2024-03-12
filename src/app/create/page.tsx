@@ -1,4 +1,6 @@
 import prisma from "@/utils/prisma";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export default function page() {
     async function createCourse(formData: FormData) {
@@ -10,6 +12,8 @@ export default function page() {
         };
 
         await prisma.course.create({ data: rawFormData });
+        revalidatePath("/");
+        redirect("/");
     }
 
     return (
