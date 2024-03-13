@@ -1,8 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Anuphan } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const nuphan = Anuphan({ subsets: ["thai"] });
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -16,7 +16,7 @@ export default function layout({
 }>) {
     return (
         <html lang="en">
-            <body className={inter.className}>{children}</body>
+            <body className={nuphan.className}>{children}</body>
         </html>
     );
 }

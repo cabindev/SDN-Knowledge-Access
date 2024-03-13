@@ -7,13 +7,25 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Category {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  create_at DateTime @default(now())
+  update_at DateTime @updatedAt
+  courses   Course[]
+
+  @@map("categories")
+}
+
 model Course {
-  id         String    @id @default(uuid())
-  name       String    @unique
-  image_link String
-  create_at  DateTime  @default(now())
-  update_at  DateTime  @updatedAt
-  episodes   Episode[]
+  id          String    @id @default(uuid())
+  name        String    @unique
+  image_link  String
+  create_at   DateTime  @default(now())
+  update_at   DateTime  @updatedAt
+  category_id String?
+  category    Category? @relation(fields: [category_id], references: [id])
+  episodes    Episode[]
 
   @@map("courses")
 }
