@@ -3,6 +3,6 @@ interface IWrapperProps {
     children?: React.ReactNode;
 }
 
-export default function Wrapper({ className, children }: IWrapperProps) {
-    return <section className={"mx-auto sm:px-6 lg:px-8 " + className}>{children}</section>;
+export default function Wrapper({ className = "max-w-5xl", children }: IWrapperProps) {
+    return <section className={`mx-auto px-4 ${className}`}>{children}</section>;
 }

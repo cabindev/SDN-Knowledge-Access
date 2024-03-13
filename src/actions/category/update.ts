@@ -9,7 +9,7 @@ import { FormState } from "@/types";
 
 const schema = yup.object().shape({
     id: yup.string().required(),
-    name: yup.string().optional(),
+    name: yup.string().required(),
 });
 
 export async function updateCategory(prevState: FormState, formData: FormData): Promise<FormState> {

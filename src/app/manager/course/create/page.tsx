@@ -1,17 +1,13 @@
-import { createCourse } from "@/actions/course/create";
-import Form from "@/components/Form";
-import Heading from "@/components/Heading";
-import Input from "@/components/Input";
 import Wrapper from "@/components/Wrapper";
+import CourseCreate from "@/components/course/CourseCreate";
+import prisma from "@/utils/prisma";
 
-export default function page() {
+export default async function page() {
+    const categories = await prisma.category.findMany();
+
     return (
         <Wrapper className="max-w-xl">
-            <Form action={createCourse}>
-                <Heading primary="สร้างคอร์ส" secondary="กรอกข้อมูลเพื่อสร้างคอร์ส" />
-                <Input type="text" name="name" placeholder="name" />
-                <Input type="text" name="image_link" placeholder="image link" />
-            </Form>
+            <CourseCreate categories={categories} />
         </Wrapper>
     );
 }

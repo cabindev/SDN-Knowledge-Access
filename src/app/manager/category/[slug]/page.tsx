@@ -1,5 +1,5 @@
 import Wrapper from "@/components/Wrapper";
-import CourseUpdate from "@/components/course/CourseUpdate";
+import CategoryUpdate from "@/components/category/CategoryUpdate";
 import prisma from "@/utils/prisma";
 
 interface IPageProps {
@@ -7,12 +7,11 @@ interface IPageProps {
 }
 
 export default async function page({ params: { slug } }: IPageProps) {
-    const course = await prisma.course.findUnique({ where: { id: slug } });
-    const categories = await prisma.category.findMany();
+    const category = await prisma.category.findUnique({ where: { id: slug } });
 
     return (
         <Wrapper className="max-w-xl">
-            <CourseUpdate course={course} categories={categories} />
+            <CategoryUpdate category={category} />
         </Wrapper>
     );
 }

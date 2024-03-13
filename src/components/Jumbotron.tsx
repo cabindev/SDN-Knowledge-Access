@@ -1,9 +1,9 @@
-interface IHeadingProps {
+interface IJumbotronProps {
     primary: string;
     secondary?: string;
 }
 
-export default function Heading({ primary, secondary }: IHeadingProps) {
+export default function Jumbotron({ primary, secondary }: IJumbotronProps) {
     return (
         <div className="my-2 w-full">
             <h2 className="text-2xl font-bold tracking-tight">{primary}</h2>

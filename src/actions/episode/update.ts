@@ -9,9 +9,9 @@ import { validate } from "@/utils/validate";
 
 const schema = yup.object().shape({
     id: yup.string().required(),
-    order: yup.number().optional(),
-    name: yup.string().optional(),
-    youtube_link: yup.string().optional(),
+    order: yup.number().required(),
+    name: yup.string().required(),
+    youtube_link: yup.string().required(),
 });
 
 export async function updateEpisode(prevState: FormState, formData: FormData): Promise<FormState> {
