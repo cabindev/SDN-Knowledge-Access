@@ -13,10 +13,7 @@ export default async function page({ params: { slug } }: IPageProps) {
     const course = await prisma.course.findUnique({ where: { id: slug } });
     if (!course) notFound();
     const categories = await prisma.category.findMany();
-    const episodes = await prisma.episode.findMany({
-        where: { course_id: course.id },
-        orderBy: { order: "asc" },
-    });
+    const episodes = await prisma.episode.findMany({ where: { course_id: course.id } });
 
     return (
         <Wrapper>

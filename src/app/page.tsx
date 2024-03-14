@@ -1,7 +1,7 @@
+import { getSession } from "@/actions/auth/session";
 import Wrapper from "@/components/Wrapper";
 import CategoryCatalog from "@/components/category/CategoryCatalog";
 import CourseCatalog from "@/components/course/CourseCatalog";
-import { getSession } from "@/utils/auth";
 import prisma from "@/utils/prisma";
 
 export default async function page() {
@@ -13,7 +13,7 @@ export default async function page() {
     return (
         <Wrapper>
             <CategoryCatalog categories={categories} />
-            <CourseCatalog courses={courses} watched={session?.watched} />
+            <CourseCatalog courses={courses} watched={session.watched} />
         </Wrapper>
     );
 }

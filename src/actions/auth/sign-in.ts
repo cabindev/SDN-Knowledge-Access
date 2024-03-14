@@ -3,12 +3,11 @@
 import * as yup from "yup";
 import { FormState } from "@/types";
 import { validate } from "@/utils/validate";
+import { getSession } from "./session";
 import prisma from "@/utils/prisma";
 import { redirect } from "next/navigation";
 import { compare } from "bcrypt";
 import { revalidatePath } from "next/cache";
-import { encrypt } from "@/utils/auth";
-import { cookies } from "next/headers";
 
 const schema = yup.object().shape({
     email: yup.string().email().required(),
@@ -16,6 +15,8 @@ const schema = yup.object().shape({
 });
 
 export async function signIn(prevState: FormState, formData: FormData): Promise<FormState> {
+    const session = await getSession();
+
     const data = {
         email: formData.get("email") as string,
         password: formData.get("password") as string,
@@ -38,10 +39,13 @@ export async function signIn(prevState: FormState, formData: FormData): Promise<
 
         if (!match) return { error: ["wrong email or password"] };
 
-        // saving cookie
-        const expires = new Date(Date.now() + 10 * 1000);
-        const session = await encrypt({ member, expires });
-        cookies().set("session", session, { expires, httpOnly: true });
+        session.id = member.id;
+        session.email = member.email;
+        session.password = member.password;
+        session.role = member.role;
+        session.watched = member.watched;
+
+        await session.save();
     } catch (err) {
         return { error: ["something went wrong"] };
     }

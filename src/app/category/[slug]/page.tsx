@@ -1,4 +1,4 @@
-import { getSession } from "@/utils/auth";
+import { getSession } from "@/actions/auth/session";
 import Wrapper from "@/components/Wrapper";
 import CourseCatalog from "@/components/course/CourseCatalog";
 import prisma from "@/utils/prisma";
@@ -17,7 +17,7 @@ export default async function page({ params: { slug } }: IPageProps) {
 
     return (
         <Wrapper>
-            <CourseCatalog courses={courses} watched={session?.watched} />
+            <CourseCatalog courses={courses} watched={session.watched} />
         </Wrapper>
     );
 }
