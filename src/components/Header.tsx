@@ -11,6 +11,7 @@ export const routes = [
     { href: "/", label: "คอร์สทั้งหมด" },
     { href: "/manager/course", label: "จัดการคอร์ส", manager: true },
     { href: "/manager/category", label: "จัดการหมวดหมู่", manager: true },
+    { href: "/manager/member", label: "จัดการผู้ใช้", manager: true },
     { href: "/auth/sign-up", label: "สมัครสมาชิก", auth: true },
     { href: "/auth/sign-in", label: "เข้าสู่ระบบ", auth: true },
 ];
