@@ -1,5 +1,5 @@
 interface IInputProps {
-    type: "text" | "number" | "hidden";
+    type: "text" | "number" | "email" | "password" | "hidden";
     name?: string;
     placeholder?: string;
     defaultValue?: string;
