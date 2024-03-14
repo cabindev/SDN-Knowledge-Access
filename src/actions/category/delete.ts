@@ -8,7 +8,7 @@ export async function deleteCategory(id: string) {
     try {
         await prisma.category.delete({ where: { id } });
     } catch (error) {
-        return { error: "something went wrong" };
+        return { error: ["something went wrong"] };
     }
 
     revalidatePath("/");

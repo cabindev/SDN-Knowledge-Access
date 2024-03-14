@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Wrapper from "./Wrapper";
 import { Bars2Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
@@ -23,7 +23,7 @@ export default function Header({ session }: IHeaderProps) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <header className="bg-transparent mb-4">
+        <header className="bg-transparent">
             <Wrapper>
                 <div className="flex justify-between items-center">
                     <img className="w-10" src="/brand.svg" />
@@ -81,7 +81,7 @@ export default function Header({ session }: IHeaderProps) {
                         )}
                     </button>
                 </div>
-                <div className={`${isOpen ? "md:hidden flex flex-col" : "hidden"}  divide-y py-2`}>
+                <div className={`${isOpen ? "md:hidden flex flex-col gap-2" : "hidden"} py-2`}>
                     {routes
                         .filter((r) => !r.manager && !r.auth)
                         .map((r, i) => (
@@ -89,7 +89,7 @@ export default function Header({ session }: IHeaderProps) {
                                 key={i}
                                 href={r.href}
                                 onClick={() => setIsOpen(!isOpen)}
-                                className="px-4 py-2 font-medium"
+                                className="p-2 font-medium"
                             >
                                 {r.label}
                             </Link>
@@ -103,7 +103,7 @@ export default function Header({ session }: IHeaderProps) {
                                     key={i}
                                     href={r.href}
                                     onClick={() => setIsOpen(!isOpen)}
-                                    className="px-4 py-2 font-medium"
+                                    className="p-2 font-medium"
                                 >
                                     {r.label}
                                 </Link>
@@ -117,7 +117,7 @@ export default function Header({ session }: IHeaderProps) {
                                     key={i}
                                     href={r.href}
                                     onClick={() => setIsOpen(!isOpen)}
-                                    className="px-4 py-2 font-medium"
+                                    className="p-2 font-medium"
                                 >
                                     {r.label}
                                 </Link>

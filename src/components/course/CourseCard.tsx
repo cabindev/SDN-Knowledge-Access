@@ -4,9 +4,10 @@ import Link from "next/link";
 interface ICourseCardProps {
     course: any;
     isManager?: boolean;
+    isPass?: boolean;
 }
 
-export default function CourseCard({ course, isManager = false }: ICourseCardProps) {
+export default function CourseCard({ course, isManager = false, isPass }: ICourseCardProps) {
     const href = isManager ? "/manager/course/" + course.id : "/course/" + course.id + "?ep=1";
 
     return (
@@ -27,10 +28,12 @@ export default function CourseCard({ course, isManager = false }: ICourseCardPro
                         </span>
                     </div>
 
-                    <div className="text-green-500">
-                        <CheckBadgeIcon className="w-4 h-4 inline mr-1" />
-                        <span className="text-sm font-medium">ผ่านเเล้ว</span>
-                    </div>
+                    {isPass && (
+                        <div className="text-green-500">
+                            <CheckBadgeIcon className="w-4 h-4 inline mr-1" />
+                            <span className="text-sm font-medium">ผ่านเเล้ว</span>
+                        </div>
+                    )}
                 </div>
             </div>
         </Link>

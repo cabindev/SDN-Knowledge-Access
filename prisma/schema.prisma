@@ -32,15 +32,15 @@ model Course {
 }
 
 model Episode {
-  id           String   @id @default(uuid())
+  id           String            @id @default(uuid())
   order        Int
   name         String
   youtube_link String
-  create_at    DateTime @default(now())
-  update_at    DateTime @updatedAt
+  create_at    DateTime          @default(now())
+  update_at    DateTime          @updatedAt
   course_id    String?
-  course       Course?  @relation(fields: [course_id], references: [id])
-  viewed       Member[]
+  course       Course?           @relation(fields: [course_id], references: [id])
+  viewed       EpisodeOnMember[]
 
   @@map("episodes")
 }
@@ -51,13 +51,24 @@ enum Role {
 }
 
 model Member {
-  id        String    @id @default(uuid())
-  email     String    @unique
+  id        String            @id @default(uuid())
+  email     String            @unique
   password  String
-  role      Role      @default(normal)
-  create_at DateTime  @default(now())
-  update_at DateTime  @updatedAt
-  watched   Episode[]
+  role      Role              @default(normal)
+  create_at DateTime          @default(now())
+  update_at DateTime          @updatedAt
+  watched   EpisodeOnMember[]
 
   @@map("members")
+}
+
+model EpisodeOnMember {
+  episode    Episode  @relation(fields: [episode_id], references: [id])
+  episode_id String
+  member     Member   @relation(fields: [member_id], references: [id])
+  member_id  String
+  create_at  DateTime @default(now())
+  update_at  DateTime @updatedAt
+
+  @@id([episode_id, member_id])
 }

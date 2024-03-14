@@ -6,7 +6,7 @@ interface IEpisodeCatalogProps {
 }
 
 export default function EpisodeCatalog({ episode, watched }: IEpisodeCatalogProps) {
-    const watched_id = watched?.map((w) => w.id);
+    const watched_id = watched?.map((w) => w.episode_id);
 
     return (
         <div className="border flex flex-col rounded-lg justify-start items-center overflow-hidden divide-y">

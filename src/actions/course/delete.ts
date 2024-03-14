@@ -8,7 +8,7 @@ export async function deleteCourse(id: string) {
     try {
         await prisma.course.delete({ where: { id } });
     } catch (error) {
-        return { error: "something went wrong" };
+        return { error: ["something went wrong"] };
     }
 
     revalidatePath("/");

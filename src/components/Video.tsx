@@ -1,17 +1,20 @@
 "use client";
 
+import { createView } from "@/actions/view/create";
 import YouTube from "react-youtube";
 
 interface IVideoProps {
     code: string;
+    episode_id: string;
+    member_id: string;
 }
 
-export default function Video({ code }: IVideoProps) {
+export default function Video({ code, episode_id, member_id }: IVideoProps) {
     const getCurrentTime = (e: any) => {
         const duration = e.target.getDuration();
         const currentTime = e.target.getCurrentTime();
         if (currentTime / duration > 0.95) {
-            alert("ended");
+            console.log("huy");
         }
     };
 

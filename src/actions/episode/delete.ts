@@ -8,7 +8,7 @@ export async function deleteEpisode(id: string) {
     try {
         await prisma.episode.delete({ where: { id } });
     } catch (error) {
-        return { error: "something went wrong" };
+        return { error: ["something went wrong"] };
     }
 
     revalidatePath("/");
