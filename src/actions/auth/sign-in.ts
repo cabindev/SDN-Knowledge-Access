@@ -7,6 +7,7 @@ import { getSession } from "./session";
 import prisma from "@/utils/prisma";
 import { redirect } from "next/navigation";
 import { compare } from "bcrypt";
+import { revalidatePath } from "next/cache";
 
 const schema = yup.object().shape({
     email: yup.string().email().required(),
@@ -49,5 +50,6 @@ export async function signIn(prevState: FormState, formData: FormData): Promise<
         return { error: ["something went wrong"] };
     }
 
+    revalidatePath("/");
     redirect("/");
 }

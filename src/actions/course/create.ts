@@ -32,5 +32,5 @@ export async function createCourse(prevState: FormState, formData: FormData): Pr
     }
 
     revalidatePath("/");
-    redirect("/");
+    redirect("/manager/course");
 }

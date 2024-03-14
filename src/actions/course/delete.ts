@@ -12,5 +12,5 @@ export async function deleteCourse(id: string) {
     }
 
     revalidatePath("/");
-    redirect("/");
+    redirect("/manager/course");
 }

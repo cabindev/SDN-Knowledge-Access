@@ -32,5 +32,5 @@ export async function createEpisode(prevState: FormState, formData: FormData): P
     }
 
     revalidatePath("/");
-    redirect("/");
+    redirect("/manager/course/" + data.course_id);
 }

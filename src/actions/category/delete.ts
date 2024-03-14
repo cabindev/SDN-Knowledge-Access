@@ -12,5 +12,5 @@ export async function deleteCategory(id: string) {
     }
 
     revalidatePath("/");
-    redirect("/");
+    redirect("/manager/category");
 }

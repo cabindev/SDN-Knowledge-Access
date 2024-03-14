@@ -16,7 +16,7 @@ export default function Form({ children, action }: IFormProps) {
     const ref = useRef<HTMLFormElement | null>(null);
 
     useEffect(() => {
-        if (!formState.error) {
+        if (!formState?.error) {
             ref.current?.reset();
         }
     }, [formState]);
@@ -29,7 +29,7 @@ export default function Form({ children, action }: IFormProps) {
         >
             {children}
             <Submit text="ตกลง" />
-            {formState.error && <Errors errors={formState.error} />}
+            {formState?.error && <Errors errors={formState.error} />}
         </form>
     );
 }

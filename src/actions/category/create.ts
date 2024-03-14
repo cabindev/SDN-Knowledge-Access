@@ -26,5 +26,5 @@ export async function createCategory(prevState: FormState, formData: FormData): 
     }
 
     revalidatePath("/");
-    redirect("/");
+    redirect("/manager/category");
 }

@@ -40,5 +40,5 @@ export async function signUp(prevState: FormState, formData: FormData): Promise<
         return { error: ["something went wrong"] };
     }
 
-    redirect("/");
+    redirect("/auth/sign-in");
 }

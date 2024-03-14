@@ -28,5 +28,5 @@ export async function updateCategory(prevState: FormState, formData: FormData): 
     }
 
     revalidatePath("/");
-    redirect("/");
+    redirect("/manager/category");
 }
