@@ -1,4 +1,4 @@
-import { getSession } from "@/actions/auth/session";
+import { getSession } from "@/utils/auth";
 import Video from "@/components/Video";
 import Wrapper from "@/components/Wrapper";
 import EpisodeCatalog from "@/components/episode/EpisodeCatalog";
@@ -34,10 +34,10 @@ export default async function page({ params: { slug }, searchParams: { ep } }: I
         <Wrapper>
             <div className="grid grid-cols-3 gap-4 items-start">
                 <div className="col-span-3 md:col-span-2 gap-4">
-                    <Video code={code} episode_id={episode.id} member_id={session.id} />
+                    <Video code={code} episode_id={episode.id} member_id={session?.id} />
                 </div>
                 <div className="col-span-3 md:col-span-1">
-                    <EpisodeCatalog episode={episodes} watched={session.watched} />
+                    <EpisodeCatalog episode={episodes} watched={session?.watched} />
                 </div>
             </div>
         </Wrapper>

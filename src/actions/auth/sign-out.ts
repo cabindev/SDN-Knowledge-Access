@@ -1,10 +1,9 @@
 "use server";
 
-import { getSession } from "./session";
+import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
 
 export async function signOut() {
-    const session = await getSession();
-    session.destroy();
+    cookies().set("session", "", { expires: new Date(0) });
     revalidatePath("/");
 }

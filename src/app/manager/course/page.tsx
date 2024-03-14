@@ -3,7 +3,7 @@ import Jumbotron from "@/components/Jumbotron";
 import Wrapper from "@/components/Wrapper";
 import CourseCatalog from "@/components/course/CourseCatalog";
 import Link from "next/link";
-import { getSession } from "@/actions/auth/session";
+import { getSession } from "@/utils/auth";
 
 export default async function page() {
     const courses = await prisma.course.findMany({ include: { episodes: true } });
@@ -17,7 +17,7 @@ export default async function page() {
                     สร้างคอร์ส
                 </button>
             </Link>
-            <CourseCatalog isManager={true} courses={courses} watched={session.watched} />
+            <CourseCatalog isManager={true} courses={courses} watched={session?.watched} />
         </Wrapper>
     );
 }

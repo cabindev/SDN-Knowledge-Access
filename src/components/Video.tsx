@@ -13,8 +13,10 @@ export default function Video({ code, episode_id, member_id }: IVideoProps) {
     const getCurrentTime = (e: any) => {
         const duration = e.target.getDuration();
         const currentTime = e.target.getCurrentTime();
-        if (currentTime / duration > 0.95) {
-            console.log("huy");
+        if (currentTime / duration > 0.9) {
+            createView(episode_id, member_id)
+                .then((d) => alert(d.message))
+                .catch((e) => alert(e.error));
         }
     };
 

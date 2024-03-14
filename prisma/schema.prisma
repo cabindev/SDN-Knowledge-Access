@@ -64,7 +64,7 @@ model Member {
 
 model EpisodeOnMember {
   episode    Episode  @relation(fields: [episode_id], references: [id])
-  episode_id String
+  episode_id String   @unique
   member     Member   @relation(fields: [member_id], references: [id])
   member_id  String
   create_at  DateTime @default(now())
