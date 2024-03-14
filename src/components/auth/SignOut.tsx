@@ -15,6 +15,7 @@ export default function SignOut() {
                     signOut();
                 })
             }
+            type="button"
             className="w-full md:w-32 p-2 rounded-full font-medium bg-black text-white flex justify-center"
         >
             {pending ? <Loading /> : "ออกจากระบบ"}

@@ -3,12 +3,15 @@ import Link from "next/link";
 
 interface ICourseCardProps {
     course: any;
+    isManager?: boolean;
 }
 
-export default function CourseCard({ course }: ICourseCardProps) {
+export default function CourseCard({ course, isManager = false }: ICourseCardProps) {
+    const href = isManager ? "/manager/course/" + course.id : "/course/" + course.id + "?ep=1";
+
     return (
         <Link
-            href={"/course/" + course.id + "?ep=1"}
+            href={href}
             className="border shadow-lg rounded-lg overflow-hidden hover:translate-y-1 delay-100 transition"
         >
             <img src={course.image_link} className="w-full h-36 object-cover" />

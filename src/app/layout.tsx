@@ -21,7 +21,7 @@ export default async function layout({
     return (
         <html lang="en">
             <body className={nuphan.className}>
-                <Header session={session} />
+                <Header session={JSON.parse(JSON.stringify(session))} />
                 {children}
             </body>
         </html>

@@ -9,7 +9,7 @@ export default async function page() {
     return (
         <Wrapper className="max-w-lg">
             <CategoryCreate />
-            <CategoryCatalog categories={categories} />
+            <CategoryCatalog isManager={true} categories={categories} />
         </Wrapper>
     );
 }

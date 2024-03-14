@@ -2,6 +2,7 @@ import { updateEpisode } from "@/actions/episode/update";
 import Form from "../Form";
 import Jumbotron from "../Jumbotron";
 import Input from "../Input";
+import EpisodeDelete from "./EpisodeDelete";
 
 interface IEpisodeUpdateProps {
     episode: any;
@@ -22,6 +23,7 @@ export default function EpisodeUpdate({ episode, course_id }: IEpisodeUpdateProp
                 defaultValue={episode.youtube_link}
             />
             <Input type="hidden" name="course_id" defaultValue={course_id} />
+            <EpisodeDelete id={episode.id} />
         </Form>
     );
 }

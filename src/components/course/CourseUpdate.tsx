@@ -2,6 +2,7 @@ import { updateCourse } from "@/actions/course/update";
 import Form from "../Form";
 import Jumbotron from "../Jumbotron";
 import Input from "../Input";
+import CourseDelete from "./CourseDelete";
 
 interface ICourseUpdateProps {
     course: any;
@@ -25,7 +26,7 @@ export default function CourseUpdate({ course, categories }: ICourseUpdateProps)
                 rows={5}
                 name="description"
                 placeholder="description"
-                className="py-2 px-4 border rounded-md w-full"
+                className="py-2 px-4 border rounded-md w-full outline-none"
                 defaultValue={course.description}
             />
 
@@ -40,6 +41,8 @@ export default function CourseUpdate({ course, categories }: ICourseUpdateProps)
                     </option>
                 ))}
             </select>
+
+            <CourseDelete id={course.id} />
         </Form>
     );
 }

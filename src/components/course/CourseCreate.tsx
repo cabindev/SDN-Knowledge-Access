@@ -18,7 +18,7 @@ export default function CourseCreate({ categories }: ICourseCreateProps) {
                 rows={5}
                 name="description"
                 placeholder="description"
-                className="py-2 px-4 border rounded-md w-full"
+                className="py-2 px-4 border rounded-md w-full outline-none"
             />
 
             <select

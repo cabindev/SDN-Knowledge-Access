@@ -12,6 +12,7 @@ export default function Submit({ text }: ISubmitProps) {
 
     return (
         <button
+            disabled={pending}
             className="py-2 px-4 border rounded-md font-medium bg-black text-white w-full flex justify-center"
             type="submit"
         >

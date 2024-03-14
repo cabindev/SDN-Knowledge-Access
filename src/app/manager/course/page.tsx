@@ -9,7 +9,7 @@ export default async function page() {
     return (
         <Wrapper>
             <Jumbotron primary="คอร์สทั้งหมด" secondary="จัดการคอร์สทั้งหมด" />
-            <CourseCatalog courses={courses} />
+            <CourseCatalog isManager={true} courses={courses} />
         </Wrapper>
     );
 }

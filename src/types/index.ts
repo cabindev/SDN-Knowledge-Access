@@ -9,6 +9,7 @@ export interface Session {
     email: string;
     password: string;
     role: string;
+    watched: any[];
 }
 
 export const sessionOptions: SessionOptions = {

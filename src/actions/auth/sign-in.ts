@@ -27,6 +27,7 @@ export async function signIn(prevState: FormState, formData: FormData): Promise<
     try {
         const member = await prisma.member.findUnique({
             where: { email: data.email.toLowerCase() },
+            include: { watched: true },
         });
 
         if (!member) {
@@ -41,6 +42,7 @@ export async function signIn(prevState: FormState, formData: FormData): Promise<
         session.email = member.email;
         session.password = member.password;
         session.role = member.role;
+        session.watched = member.watched;
 
         await session.save();
     } catch (err) {
