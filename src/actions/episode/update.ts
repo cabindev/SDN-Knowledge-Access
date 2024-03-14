@@ -9,9 +9,10 @@ import { validate } from "@/utils/validate";
 
 const schema = yup.object().shape({
     id: yup.string().required(),
-    order: yup.number().required(),
+    order: yup.number().required().min(1),
     name: yup.string().required(),
     youtube_link: yup.string().required(),
+    course_id: yup.string().required(),
 });
 
 export async function updateEpisode(prevState: FormState, formData: FormData): Promise<FormState> {
@@ -20,6 +21,7 @@ export async function updateEpisode(prevState: FormState, formData: FormData): P
         order: parseInt(formData.get("order") as string),
         name: formData.get("name") as string,
         youtube_link: formData.get("youtube_link") as string,
+        course_id: formData.get("course_id") as string,
     };
 
     const { errors } = await validate(schema, data);

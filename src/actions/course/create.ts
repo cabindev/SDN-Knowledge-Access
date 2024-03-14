@@ -10,6 +10,7 @@ import { FormState } from "@/types";
 const schema = yup.object().shape({
     name: yup.string().required(),
     image_link: yup.string().required(),
+    description: yup.string().required(),
     category_id: yup.string().required(),
 });
 
@@ -17,6 +18,7 @@ export async function createCourse(prevState: FormState, formData: FormData): Pr
     const data = {
         name: formData.get("name") as string,
         image_link: formData.get("image_link") as string,
+        description: formData.get("description") as string,
         category_id: formData.get("category_id") as string,
     };
 

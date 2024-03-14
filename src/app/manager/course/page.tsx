@@ -1,15 +1,14 @@
-import Wrapper from "@/components/Wrapper";
-import CategoryCatalog from "@/components/category/CategoryCatalog";
-import CourseCatalog from "@/components/course/CourseCatalog";
 import prisma from "@/utils/prisma";
+import Jumbotron from "@/components/Jumbotron";
+import Wrapper from "@/components/Wrapper";
+import CourseCatalog from "@/components/course/CourseCatalog";
 
 export default async function page() {
     const courses = await prisma.course.findMany({ include: { episodes: true } });
-    const categories = await prisma.category.findMany();
 
     return (
         <Wrapper>
-            <CategoryCatalog categories={categories} />
+            <Jumbotron primary="คอร์สทั้งหมด" secondary="จัดการคอร์สทั้งหมด" />
             <CourseCatalog courses={courses} />
         </Wrapper>
     );

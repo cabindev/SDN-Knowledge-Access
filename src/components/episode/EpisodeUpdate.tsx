@@ -5,9 +5,10 @@ import Input from "../Input";
 
 interface IEpisodeUpdateProps {
     episode: any;
+    course_id: string;
 }
 
-export default function EpisodeUpdate({ episode }: IEpisodeUpdateProps) {
+export default function EpisodeUpdate({ episode, course_id }: IEpisodeUpdateProps) {
     return (
         <Form action={updateEpisode}>
             <Jumbotron primary="อัพเดทตอน" secondary="กรอกข้อมูลเพื่ออัพเดทตอน" />
@@ -20,6 +21,7 @@ export default function EpisodeUpdate({ episode }: IEpisodeUpdateProps) {
                 placeholder="youtube link"
                 defaultValue={episode.youtube_link}
             />
+            <Input type="hidden" name="course_id" defaultValue={course_id} />
         </Form>
     );
 }

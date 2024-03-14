@@ -7,6 +7,8 @@ import Link from "next/link";
 
 export const routes = [
     { href: "/", label: "คอร์สทั้งหมด" },
+    { href: "/manager/course", label: "จัดการคอร์ส" },
+    { href: "/manager/category", label: "จัดการหมวดหมู่" },
     { href: "/", label: "เข้าสู่ระบบ" },
     { href: "/", label: "สมัครสมาชิก" },
 ];

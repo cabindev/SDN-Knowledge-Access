@@ -21,12 +21,20 @@ export default function CourseUpdate({ course, categories }: ICourseUpdateProps)
                 defaultValue={course.image_link}
             />
 
+            <textarea
+                rows={5}
+                name="description"
+                placeholder="description"
+                className="py-2 px-4 border rounded-md w-full"
+                defaultValue={course.description}
+            />
+
             <select
                 name="category_id"
                 defaultValue={course.category_id}
                 className="py-2 px-4 border rounded-md outline-none appearance-none w-full"
             >
-                {categories.map((c: any, i: any) => (
+                {categories.map((c, i) => (
                     <option key={i} value={c.id}>
                         {c.name}
                     </option>

@@ -21,6 +21,7 @@ model Course {
   id          String    @id @default(uuid())
   name        String    @unique
   image_link  String
+  description String
   create_at   DateTime  @default(now())
   update_at   DateTime  @updatedAt
   category_id String?
@@ -33,7 +34,7 @@ model Course {
 model Episode {
   id           String   @id @default(uuid())
   order        Int
-  name         String   @unique
+  name         String
   youtube_link String
   create_at    DateTime @default(now())
   update_at    DateTime @updatedAt
