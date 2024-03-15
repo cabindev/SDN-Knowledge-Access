@@ -9,9 +9,9 @@ interface ICourseCatalogProps {
 }
 
 export default function CourseCatalog({ courses, isManager }: ICourseCatalogProps) {
-    if (courses.length == 0) return <p className="text-gray-500">ไม่มีสินค้า</p>;
-
     const { member } = useStore();
+
+    if (courses.length == 0) return <p className="text-gray-500">ไม่มีสินค้า</p>;
 
     const isPassCheck = (id: string, episodes: any[]): boolean => {
         const watched_length = member?.watched?.map((w) => w.course_id === id).length;

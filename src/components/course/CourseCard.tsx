@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { CheckBadgeIcon, PlayCircleIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
@@ -15,7 +16,14 @@ export default function CourseCard({ course, isManager = false, isPass }: ICours
             href={href}
             className="border shadow-lg rounded-lg overflow-hidden hover:translate-y-1 delay-100 transition"
         >
-            <img src={course.image_link} className="w-full h-36 object-cover" />
+            <Image
+                width={200}
+                height={200}
+                src={course.image_link}
+                alt={course.image_link}
+                className="w-full h-36 object-cover"
+                loading="lazy"
+            />
             <div className="py-2 px-4">
                 <h3 className="tracking-tight font-bold">{course.name}</h3>
                 <p className="text-xs text-gray-500 truncate">{course.description}</p>

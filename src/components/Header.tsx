@@ -6,6 +6,7 @@ import { Bars2Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { Session } from "@/types";
 import SignOut from "./auth/SignOut";
+import Image from "next/image";
 
 export const routes = [
     { href: "/", label: "คอร์สทั้งหมด" },
@@ -27,7 +28,14 @@ export default function Header({ session }: IHeaderProps) {
         <header className="bg-transparent">
             <Wrapper>
                 <div className="flex justify-between items-center">
-                    <img className="w-10" src="/brand.svg" />
+                    <Image
+                        width={100}
+                        height={100}
+                        src={"/brand.svg"}
+                        alt={"brand"}
+                        className="h-full w-10"
+                    />
+                    {/* <img className="w-10" src="/brand.svg" /> */}
                     <div className="hidden md:flex justify-center items-center p-4 gap-6">
                         {routes
                             .filter((r) => !r.manager && !r.auth)
