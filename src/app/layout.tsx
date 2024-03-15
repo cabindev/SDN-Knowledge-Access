@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import type { Metadata } from "next";
 import { Anuphan } from "next/font/google";
 import { getSession } from "@/actions/auth/session";
+import Refesh from "@/components/Refesh";
 
 const nuphan = Anuphan({ subsets: ["thai"] });
 
@@ -21,8 +22,10 @@ export default async function layout({
     return (
         <html lang="en">
             <body className={nuphan.className}>
-                <Header session={JSON.parse(JSON.stringify(session))} />
-                {children}
+                <Refesh>
+                    <Header session={JSON.parse(JSON.stringify(session))} />
+                    {children}
+                </Refesh>
             </body>
         </html>
     );

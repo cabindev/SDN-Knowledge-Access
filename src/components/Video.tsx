@@ -1,6 +1,5 @@
 "use client";
 
-import { createView } from "@/actions/view/create";
 import YouTube from "react-youtube";
 
 interface IVideoProps {
@@ -10,11 +9,15 @@ interface IVideoProps {
 }
 
 export default function Video({ code, episode_id, member_id }: IVideoProps) {
-    const getCurrentTime = (e: any) => {
+    const getCurrentTime = async (e: any) => {
         const duration = e.target.getDuration();
         const currentTime = e.target.getCurrentTime();
-        if (currentTime / duration > 0.95) {
-            console.log("huy");
+        if (currentTime / duration > 0.9) {
+            const result = await fetch("/api/view/", {
+                method: "POST",
+                body: JSON.stringify({ episode_id, member_id }),
+            });
+            alert(await result.text());
         }
     };
 
