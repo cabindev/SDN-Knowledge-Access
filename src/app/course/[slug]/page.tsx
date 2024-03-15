@@ -1,7 +1,7 @@
-import { getSession } from "@/actions/auth/session";
 import Video from "@/components/Video";
 import Wrapper from "@/components/Wrapper";
 import EpisodeCatalog from "@/components/episode/EpisodeCatalog";
+import { getMember, getSession } from "@/utils/auth";
 import prisma from "@/utils/prisma";
 import { notFound } from "next/navigation";
 
@@ -28,16 +28,16 @@ export default async function page({ params: { slug }, searchParams: { ep } }: I
 
     const code = episode.youtube_link.split("https://youtu.be/")[1];
 
-    const session = await getSession();
+    const member = await getMember();
 
     return (
         <Wrapper>
             <div className="grid grid-cols-3 gap-4 items-start">
                 <div className="col-span-3 md:col-span-2 gap-4">
-                    <Video code={code} episode_id={episode.id} member_id={session.id} />
+                    <Video code={code} episode_id={episode.id} member_id={member?.id} />
                 </div>
                 <div className="col-span-3 md:col-span-1">
-                    <EpisodeCatalog episode={episodes} watched={session.watched} />
+                    <EpisodeCatalog episode={episodes} />
                 </div>
             </div>
         </Wrapper>

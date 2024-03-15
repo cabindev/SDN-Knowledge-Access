@@ -1,5 +1,6 @@
 "use client";
 
+import { revalidatePath } from "next/cache";
 import YouTube from "react-youtube";
 
 interface IVideoProps {
