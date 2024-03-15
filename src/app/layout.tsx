@@ -40,7 +40,7 @@ export default async function layout({ children }: { children: React.ReactNode }
         <Auth member={newMember}>
             <html lang="en">
                 <body className={nuphan.className}>
-                    <Header session={JSON.parse(JSON.stringify(newMember))} />
+                    <Header session={JSON.parse(JSON.stringify(member))} />
                     {children}
                 </body>
             </html>
