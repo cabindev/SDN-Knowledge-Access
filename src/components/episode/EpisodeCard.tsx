@@ -11,7 +11,7 @@ export default function EpisodeCard({ episode, isWatched = false }: IEpisodeCard
         <Link
             href={"/course/" + episode.course_id + "?ep=" + episode.order}
             className={`w-full py-4 px-6 grid grid-cols-5 gap-2 border-l-4 ${
-                isWatched ? "hover:border-l-green-500" : "hover:border-l-muted-foreground"
+                isWatched ? "hover:border-l-green-500" : "hover:border-l-gray-500"
             }  transition`}
         >
             <p className="col-span-4">{episode.name}</p>
