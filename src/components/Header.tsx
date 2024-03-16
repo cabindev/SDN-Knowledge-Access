@@ -18,11 +18,12 @@ export const routes = [
 ];
 
 interface IHeaderProps {
-    session?: Session;
+    raw?: any;
 }
 
-export default function Header({ session }: IHeaderProps) {
+export default function Header({ raw }: IHeaderProps) {
     const [isOpen, setIsOpen] = useState(false);
+    const session = JSON.parse(raw);
 
     return (
         <header className="bg-transparent">

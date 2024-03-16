@@ -22,7 +22,7 @@ export default async function layout({ children }: { children: React.ReactNode }
         <Refesh>
             <html lang="en">
                 <body className={nuphan.className}>
-                    <Header session={JSON.parse(JSON.stringify(session))} />
+                    <Header raw={JSON.stringify(session)} />
                     {children}
                 </body>
             </html>
