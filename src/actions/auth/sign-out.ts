@@ -1,9 +1,10 @@
 "use server";
 
-import { cancelSession } from "@/utils/auth";
-import { revalidatePath } from "next/cache";
+import { getSession } from "@/utils/session";
+import { redirect } from "next/navigation";
 
 export async function signOut() {
-    await cancelSession();
-    revalidatePath("/");
+    const session = await getSession();
+    session.destroy();
+    redirect("/");
 }

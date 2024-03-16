@@ -21,7 +21,6 @@ export async function POST(req: Request) {
         }
         return new Response("the video was ended", { status: 200 });
     } catch (error) {
-        console.log(error);
         return new Response("somthing went wrong", { status: 400 });
     }
 }

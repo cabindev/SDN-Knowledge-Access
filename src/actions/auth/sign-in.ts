@@ -7,7 +7,7 @@ import prisma from "@/utils/prisma";
 import { redirect } from "next/navigation";
 import { compare } from "bcrypt";
 import { revalidatePath } from "next/cache";
-import { signSession } from "@/utils/auth";
+import { getSession } from "@/utils/session";
 
 const schema = yup.object().shape({
     email: yup.string().email().required(),
@@ -15,6 +15,7 @@ const schema = yup.object().shape({
 });
 
 export async function signIn(prevState: FormState, formData: FormData): Promise<FormState> {
+    const session = await getSession();
     const data = {
         email: formData.get("email") as string,
         password: formData.get("password") as string,
@@ -33,7 +34,11 @@ export async function signIn(prevState: FormState, formData: FormData): Promise<
         const match = await compare(data.password, member.password);
         if (!match) return { error: ["wrong email or password"] };
 
-        signSession({ id: member.id, role: member.role });
+        session.id = member.id;
+        session.email = member.email;
+        session.role = member.role;
+
+        await session.save();
     } catch (err) {
         return { error: ["something went wrong"] };
     }

@@ -1,20 +1,18 @@
 "use client";
 
-import { useStore } from "@/store";
 import CourseCard from "./CourseCard";
 
 interface ICourseCatalogProps {
     courses: any[];
     isManager?: boolean;
+    watched?: any[];
 }
 
-export default function CourseCatalog({ courses, isManager }: ICourseCatalogProps) {
-    const { member } = useStore();
-
+export default function CourseCatalog({ courses, isManager, watched }: ICourseCatalogProps) {
     if (courses.length == 0) return <p className="text-gray-500">ไม่มีสินค้า</p>;
 
     const isPassCheck = (id: string, episodes: any[]): boolean => {
-        const watched_length = member?.watched?.map((w) => w.course_id === id).length;
+        const watched_length = watched?.map((w) => w.course_id === id).length;
         const episodes_length = episodes.length;
 
         if (watched_length === episodes_length) {

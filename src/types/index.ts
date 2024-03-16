@@ -5,11 +5,9 @@ export interface FormState {
 }
 
 export interface Session {
-    id: string;
-    email: string;
-    password: string;
-    role: string;
-    watched: any[];
+    id?: string;
+    email?: string;
+    role?: string;
 }
 
 export const sessionOptions: SessionOptions = {
