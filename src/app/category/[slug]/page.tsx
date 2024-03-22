@@ -16,7 +16,7 @@ export default async function page({ params: { slug } }: IPageProps) {
     const session = await getSession();
 
     const member = await prisma.member.findUnique({
-        where: { id: session.id ?? "" },
+        where: { id: session?.member.id ?? "" },
         include: { watched: true },
     });
 

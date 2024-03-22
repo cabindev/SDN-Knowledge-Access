@@ -31,7 +31,7 @@ export default async function page({ params: { slug }, searchParams: { ep } }: I
     const session = await getSession();
 
     const member = await prisma.member.findUnique({
-        where: { id: session.id ?? "" },
+        where: { id: session?.member.id ?? "" },
         include: { watched: true },
     });
 
@@ -39,7 +39,7 @@ export default async function page({ params: { slug }, searchParams: { ep } }: I
         <Wrapper>
             <div className="grid grid-cols-3 gap-4 items-start">
                 <div className="col-span-3 md:col-span-2 gap-4">
-                    <Video code={code} episode_id={episode.id} member_id={member?.id ?? ""} />
+                    <Video code={code} episode_id={episode.id} />
                 </div>
                 <div className="col-span-3 md:col-span-1">
                     <EpisodeCatalog episode={episodes} watched={member?.watched} />

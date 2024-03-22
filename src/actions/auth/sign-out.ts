@@ -1,10 +1,9 @@
 "use server";
 
-import { getSession } from "@/utils/session";
+import { clearSession } from "@/utils/session";
 import { redirect } from "next/navigation";
 
 export async function signOut() {
-    const session = await getSession();
-    session.destroy();
+    await clearSession();
     redirect("/");
 }

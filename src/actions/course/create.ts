@@ -6,6 +6,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { validate } from "@/utils/validate";
 import { FormState } from "@/types";
+import { getSession } from "@/utils/session";
 
 const schema = yup.object().shape({
     name: yup.string().required(),
@@ -15,6 +16,11 @@ const schema = yup.object().shape({
 });
 
 export async function createCourse(prevState: FormState, formData: FormData): Promise<FormState> {
+    const session = await getSession();
+    if (!session || session.member.role !== "manager") {
+        return { error: ["forbidden"] };
+    }
+
     const data = {
         name: formData.get("name") as string,
         image_link: formData.get("image_link") as string,

@@ -1,24 +1,20 @@
 "use client";
 
-import { revalidatePath } from "next/cache";
+import { watchVideo } from "@/actions/watch";
 import YouTube from "react-youtube";
 
 interface IVideoProps {
     code: string;
     episode_id: string;
-    member_id: string;
 }
 
-export default function Video({ code, episode_id, member_id }: IVideoProps) {
+export default function Video({ code, episode_id }: IVideoProps) {
     const getCurrentTime = async (e: any) => {
         const duration = e.target.getDuration();
         const currentTime = e.target.getCurrentTime();
         if (currentTime / duration > 0.9) {
-            const result = await fetch("/api/view/", {
-                method: "POST",
-                body: JSON.stringify({ episode_id, member_id }),
-            });
-            alert(await result.text());
+            const { message } = await watchVideo(episode_id);
+            alert(message);
         }
     };
 

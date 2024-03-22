@@ -6,6 +6,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { validate } from "@/utils/validate";
 import { FormState } from "@/types";
+import { getSession } from "@/utils/session";
 
 const schema = yup.object().shape({
     id: yup.string().required(),
@@ -13,6 +14,11 @@ const schema = yup.object().shape({
 });
 
 export async function updateCategory(prevState: FormState, formData: FormData): Promise<FormState> {
+    const session = await getSession();
+    if (!session || session.member.role !== "manager") {
+        return { error: ["forbidden"] };
+    }
+
     const data = {
         id: formData.get("id") as string,
         name: formData.get("name") as string,
