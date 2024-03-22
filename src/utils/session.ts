@@ -1,14 +1,10 @@
+import { Session } from "@/types";
 import type { Role } from "@prisma/client";
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 
 const secretKey = process.env.SECRET_KEY;
 const key = new TextEncoder().encode(secretKey);
-
-interface Session {
-    id: string;
-    role: Role;
-}
 
 export async function seal(payload: any): Promise<string> {
     return await new SignJWT(payload)
