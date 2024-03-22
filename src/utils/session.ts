@@ -1,7 +1,8 @@
 import { Session } from "@/types";
-import type { Role } from "@prisma/client";
 import { SignJWT, jwtVerify } from "jose";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
+import { NextRequest, NextResponse } from "next/server";
+import prisma from "./prisma";
 
 const secretKey = process.env.SECRET_KEY;
 const key = new TextEncoder().encode(secretKey);
@@ -35,4 +36,40 @@ export async function createSession(member: Session) {
 
 export async function clearSession() {
     cookies().set("session", "", { expires: new Date(0) });
+}
+
+export async function getCurrent(request: NextRequest): Promise<Session | null> {
+    try {
+        const response = await fetch(request.nextUrl.origin + "/api/me", {
+            headers: headers(),
+            next: { revalidate: 3600 },
+        });
+        if (!response.ok) return null;
+        const { data } = await response.json();
+        return data;
+    } catch (err) {
+        return null;
+    }
+}
+
+export async function updateSession(request: NextRequest) {
+    const session = request.cookies.get("session")?.value;
+    if (!session) return;
+
+    const parsed = await unseal(session);
+    if (parsed.expires) {
+        const newMember = await getCurrent(request);
+        if (!newMember) return;
+        parsed.member = { id: newMember.id, role: newMember.role };
+    }
+
+    const response = NextResponse.next();
+    response.cookies.set({
+        name: "session",
+        value: await seal(parsed),
+        httpOnly: true,
+        expires: new Date(parsed.expires),
+    });
+
+    return response;
 }
