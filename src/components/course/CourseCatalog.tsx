@@ -11,15 +11,20 @@ interface ICourseCatalogProps {
 export default function CourseCatalog({ courses, isManager, watched }: ICourseCatalogProps) {
     if (courses.length == 0) return <p className="text-gray-500">ไม่มีสินค้า</p>;
 
-    const isPassCheck = (id: string, episodes: any[]): boolean => {
-        const watched_length = watched?.map((w) => w.course_id === id).length;
-        const episodes_length = episodes.length;
+    const isPassCheck = (episodes: any[]): boolean => {
+        const episodes_ids = episodes.map((e) => e.id);
 
-        if (watched_length === episodes_length) {
-            return true;
+        if (!watched) return false;
+
+        const watched_ids = watched.map((w) => w.episode_id);
+
+        for (let episode_id of episodes_ids) {
+            if (!watched_ids.includes(episode_id)) {
+                return false;
+            }
         }
 
-        return false;
+        return true;
     };
 
     return (
@@ -27,7 +32,7 @@ export default function CourseCatalog({ courses, isManager, watched }: ICourseCa
             {courses.map((c, i) => (
                 <CourseCard
                     isManager={isManager}
-                    isPass={isPassCheck(c.id, c.episodes)}
+                    isPass={isPassCheck(c.episodes)}
                     key={i}
                     course={c}
                 />

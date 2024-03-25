@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { CheckBadgeIcon, PlayCircleIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import { convertDriveLink } from "@/utils/drive";
 
 interface ICourseCardProps {
     course: any;
@@ -11,6 +12,13 @@ interface ICourseCardProps {
 export default function CourseCard({ course, isManager = false, isPass }: ICourseCardProps) {
     const href = isManager ? "/manager/course/" + course.id : "/course/" + course.id + "?ep=1";
 
+    let parsed_image_link = convertDriveLink(course.image_link);
+    if (parsed_image_link !== null) {
+        parsed_image_link = String(parsed_image_link);
+    } else {
+        parsed_image_link = String(course.image_link);
+    }
+
     return (
         <Link
             href={href}
@@ -19,8 +27,8 @@ export default function CourseCard({ course, isManager = false, isPass }: ICours
             <Image
                 width={200}
                 height={200}
-                src={course.image_link}
-                alt={course.image_link}
+                src={parsed_image_link}
+                alt={parsed_image_link}
                 className="w-full h-36 object-cover"
                 loading="lazy"
             />
