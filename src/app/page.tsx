@@ -22,7 +22,7 @@ export default async function page() {
 
     return (
         <Wrapper>
-            <img src="./images/sdn course.svg" alt="course-logo"></img>
+            <img src="./images/sdn course.svg" alt="hero-logo"></img>
             <CategoryCatalog categories={categories} />
             <CourseCatalog courses={courses} watched={member?.watched} />
         </Wrapper>
