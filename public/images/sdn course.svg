@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 230">
+  <defs>
+    <style>
+      .cls-1 {
+        font-family: Seppuri-Light, Seppuri;
+        font-size: 11.72px;
+        font-weight: 300;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        fill: #000;
+      }
+
+      .cls-4 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-5 {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+        stroke-width: .3px;
+      }
+
+      .cls-2 {
+        font-family: Seppuri-SemiBold, Seppuri;
+        font-size: 44.95px;
+        font-weight: 600;
+      }
+
+      .cls-6 {
+        letter-spacing: .02em;
+      }
+
+      .cls-3 {
+        font-family: CaveatRoman-Bold, Caveat;
+        font-size: 27.2px;
+        font-variation-settings: 'wght' 700;
+        font-weight: 700;
+      }
+    </style>
+  </defs>
+  <text class="cls-3" transform="translate(935.64 87.91)"><tspan class="cls-6" x="0" y="0">S</tspan><tspan class="cls-4" x="14.01" y="0">D</tspan><tspan x="29.43" y="0">N</tspan></text>
+  <text class="cls-2" transform="translate(845.18 126.91)"><tspan x="0" y="0">Knowledges</tspan></text>
+  <path class="cls-5" d="M929.22,17.53c9.71-3.07,20.06-4.72,30.78-4.72,51.35,0,93.86,37.88,101.1,87.22"/>
+  <path class="cls-5" d="M972.43,216.44c-4.07.49-8.22.75-12.43.75-50.65,0-92.7-36.86-100.78-85.22"/>
+  <text class="cls-1" transform="translate(913.77 143.51)"><tspan x="0" y="0">คอร์สพัฒนาศักยภาพ </tspan></text>
+</svg>

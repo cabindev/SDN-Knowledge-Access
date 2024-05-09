@@ -18,7 +18,7 @@ export default function MemberTable({ members, episodesLength }: IMemberTablePro
                             อีเมล
                         </th>
                         <th scope="col" className="text-sm font-medium px-6 py-4 text-left">
-                            ยศ
+                            ประเภท
                         </th>
                         <th scope="col" className="text-sm font-medium px-6 py-4 text-center">
                             จบหลักสูตร

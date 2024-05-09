@@ -7,6 +7,7 @@ import prisma from "./prisma";
 const secretKey = process.env.SECRET_KEY;
 const key = new TextEncoder().encode(secretKey);
 
+console.log(process.env.SECRET_KEY)
 export async function seal(payload: any): Promise<string> {
     return await new SignJWT(payload)
         .setProtectedHeader({ alg: "HS256" })
@@ -16,10 +17,16 @@ export async function seal(payload: any): Promise<string> {
 }
 
 export async function unseal(input: string): Promise<any> {
-    const { payload } = await jwtVerify(input, key, {
-        algorithms: ["HS256"],
-    });
-    return payload;
+    try {
+        const { payload } = await jwtVerify(input, key, {
+            algorithms: ["HS256"],
+        });
+        return payload;
+    } catch (error) {
+        console.error("Failed to verify JWT: ", error);
+        throw error;
+    }
+
 }
 
 export async function getSession(): Promise<{ member: Session } | null> {
@@ -51,6 +58,7 @@ export async function getCurrent(request: NextRequest): Promise<Session | null> 
         return null;
     }
 }
+
 
 export async function updateSession(request: NextRequest) {
     const session = request.cookies.get("session")?.value;
