@@ -7,7 +7,6 @@ import prisma from "./prisma";
 const secretKey = process.env.SECRET_KEY;
 const key = new TextEncoder().encode(secretKey);
 
-console.log(process.env.SECRET_KEY)
 export async function seal(payload: any): Promise<string> {
     return await new SignJWT(payload)
         .setProtectedHeader({ alg: "HS256" })
