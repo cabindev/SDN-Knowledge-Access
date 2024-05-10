@@ -21,10 +21,11 @@ export default async function page() {
     }
 
     return (
-        <Wrapper>
-            <img src="./images/sdn course.svg" alt="heros-logo"></img>
-            <CategoryCatalog categories={categories} />
-            <CourseCatalog courses={courses} watched={member?.watched} />
-        </Wrapper>
+      <Wrapper>
+        <h4 className="text-2xl">Course Online</h4>
+        <img src="./images/sdn course.svg" alt="heros-logo"></img>
+        <CategoryCatalog categories={categories} />
+        <CourseCatalog courses={courses} watched={member?.watched} />
+      </Wrapper>
     );
 }
