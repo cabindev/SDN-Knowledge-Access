@@ -1,19 +1,15 @@
 import Wrapper from "@/components/Wrapper";
-import CategoryCatalog from "@/components/category/CategoryCatalog";
 import CourseCatalog from "@/components/course/CourseCatalog";
 import prisma from "@/utils/prisma";
 import { getSession } from "@/utils/session";
-import Image from "next/image";
 
-export default async function page() {
+export default async function Page() {
     const courses = await prisma.course.findMany({ include: { episodes: true } });
-    const categories = await prisma.category.findMany();
 
     const session = await getSession();
 
-    // ตรวจสอบว่า session และ session.member มีข้อมูลที่ถูกต้อง
     let member = null;
-    if (session && session.member && session.member.id) {
+    if (session?.member?.id) {
         member = await prisma.member.findUnique({
             where: { id: session.member.id },
             include: { watched: true },
@@ -21,11 +17,32 @@ export default async function page() {
     }
 
     return (
-      <Wrapper>
-        <h4 className="text-2xl">Course Online</h4>
-        <img src="./images/sdn course.svg" alt="heros-logo"></img>
-        <CategoryCatalog categories={categories} />
-        <CourseCatalog courses={courses} watched={member?.watched} />
-      </Wrapper>
+      <div className="min-h-screen bg-gradient-to-br from-indigo-200 via-indigo-400 to-indigo-500">
+        <Wrapper className="max-w-6xl">
+          <section className="py-20">
+            <div className="text-center mb-16">
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                เรียนรู้สู่การเปลี่ยนแปลงที่ยั่งยืน
+              </h1>
+              <p className="text-xl md:text-2xl text-indigo-100 mb-10">
+                หลักสูตรออนไลน์จากเครือข่ายงดเหล้า - เรียนฟรี
+              </p>
+              <a
+                href="#courses"
+                className="inline-block bg-white hover:bg-indigo-100 text-indigo-700 font-bold py-3 px-8 rounded-full transition duration-300 ease-in-out text-lg shadow-lg hover:shadow-xl"
+              >
+                เริ่มเรียนรู้เลย!
+              </a>
+            </div>
+
+            <section id="courses" className="bg-white rounded-2xl shadow-2xl p-8">
+              <h2 className="text-3xl font-bold text-indigo-800 mb-8 text-center">
+                หลักสูตรที่เปิดสอน
+              </h2>
+              <CourseCatalog courses={courses} watched={member?.watched} />
+            </section>
+          </section>
+        </Wrapper>
+      </div>
     );
 }

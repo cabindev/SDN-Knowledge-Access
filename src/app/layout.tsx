@@ -2,9 +2,6 @@ import "./globals.css";
 import Header from "@/components/Header";
 import { getSession } from "@/utils/session";
 import type { Metadata } from "next";
-import { Anuphan } from "next/font/google";
-
-const nuphan = Anuphan({ subsets: ["thai"] });
 
 export const metadata: Metadata = {
     title: "SDN Knowledge",
@@ -18,8 +15,8 @@ export default async function layout({ children }: { children: React.ReactNode }
     const session = await getSession();
 
     return (
-        <html lang="en">
-            <body className={nuphan.className}>
+        <html lang="th">
+            <body>
                 <Header session={session?.member} />
                 {children}
             </body>
