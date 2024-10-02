@@ -37,7 +37,7 @@ export default async function Page() {
 
             <section id="courses" className="bg-white rounded-2xl shadow-2xl p-8">
               <h2 className="text-3xl font-bold text-indigo-800 mb-8 text-center">
-                หลักสูตรที่เปิดสอน
+                SDN Knowledges
               </h2>
               <CourseCatalog courses={courses} watched={member?.watched} />
             </section>
