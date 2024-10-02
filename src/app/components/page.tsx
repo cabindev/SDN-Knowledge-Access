@@ -1,7 +1,7 @@
 export default function Test(){
     return(
         <div>
-            Hellow 1
+            Hellow yellow 1
         </div>
     )
 }

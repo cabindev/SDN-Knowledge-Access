@@ -9,9 +9,9 @@ const config: Config = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Seppuri', 'sans-serif'],
-              },
-        },
+              sans: ['var(--font-seppuri)', 'sans-serif'],
+            },
+          },
     },
     plugins: [],
 };
