@@ -17,7 +17,7 @@ export default async function Page() {
     }
 
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-200 via-indigo-400 to-indigo-500">
+      <div className="min-h-screen bg-gradient-to-br from-indigo-300 via-indigo-400 to-indigo-500">
         <Wrapper className="max-w-6xl">
           <section className="py-20">
             <div className="text-center mb-16">
