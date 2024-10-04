@@ -4,34 +4,25 @@ import { getSession } from "@/utils/session";
 import type { Metadata } from "next";
 import localFont from 'next/font/local';
 
-// กำหนดฟอนต์ Seppuri
-const seppuri = localFont({
-  src: [
-    {
-      path: '../../public/fonts/seppuri-regular-webfont.woff2',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/seppuri-medium-webfont.woff2',
-      weight: '500',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/seppuri-bold-webfont.woff2',
-      weight: '700',
-      style: 'normal',
-    },
-    // เพิ่มแบบอื่นๆ ตามที่คุณมี
-  ],
-  variable: '--font-seppuri',
+const seppuriSemibold = localFont({
+  src: "./fonts/seppuri-semibold-webfont.woff2",
+  variable: "--font-seppuri-semibold",
+  weight: "600",
+  display: "swap",
+});
+
+const seppuriThin = localFont({
+  src: "./fonts/seppuri-thin-webfont.woff",
+  variable: "--font-seppuri-thin",
+  weight: "100",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
     title: "SDN Knowledge",
     description: "SDN Knowledge",
     icons: {
-        icon: "/brand.svg",
+        icon: "/favicon.ico",
     },
 };
 
@@ -39,11 +30,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     const session = await getSession();
 
     return (
-        <html lang="th" className={seppuri.variable}>
-            <body className="font-sans">
+
+            <body className={`${seppuriSemibold.variable} ${seppuriThin.variable} antialiased`}>
                 <Header session={session?.member} />
                 {children}
             </body>
-        </html>
+
     );
 }

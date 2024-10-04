@@ -28,14 +28,19 @@ export default function Header({ session }: IHeaderProps) {
         <header className="bg-transparent">
             <Wrapper>
                 <div className="flex justify-between items-center">
-                    <Image
-                        width={100}
-                        height={100}
-                        src={"/brand.svg"}
-                        alt={"brand"}
-                        className="h-full w-10"
-                    />
-                    {/* <img className="w-10" src="/brand.svg" /> */}
+                    <div className="flex items-center">
+                        <Image
+                            width={100}
+                            height={100}
+                            src={"/logo.png"}
+                            alt={"brand"}
+                            className="h-full w-10 mr-2"
+                        />
+                        <Link href="//sdnthailand.com">
+                            <span className="font-medium">SDN THAILAND</span>
+                        </Link>
+                    </div>
+                    
                     <div className="hidden md:flex justify-center items-center p-4 gap-6">
                         {routes
                             .filter((r) => !r.manager && !r.auth)
