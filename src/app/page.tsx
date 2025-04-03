@@ -4,17 +4,22 @@ import prisma from "@/utils/prisma";
 import { getSession } from "@/utils/session";
 
 export default async function Page() {
-    const courses = await prisma.course.findMany({ include: { episodes: true } });
+  const courses = await prisma.course.findMany({ 
+      include: { episodes: true },
+      orderBy: {
+        id: 'desc' 
+      }
+  });
 
-    const session = await getSession();
+  const session = await getSession();
 
-    let member = null;
-    if (session?.member?.id) {
-        member = await prisma.member.findUnique({
-            where: { id: session.member.id },
-            include: { watched: true },
-        });
-    }
+  let member = null;
+  if (session?.member?.id) {
+      member = await prisma.member.findUnique({
+          where: { id: session.member.id },
+          include: { watched: true },
+      });
+  }
 
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-300 via-indigo-400 to-indigo-500">
