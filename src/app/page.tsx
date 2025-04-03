@@ -7,7 +7,7 @@ export default async function Page() {
   const courses = await prisma.course.findMany({ 
       include: { episodes: true },
       orderBy: {
-        id: 'desc' 
+        create_at: 'desc'  
       }
   });
 
