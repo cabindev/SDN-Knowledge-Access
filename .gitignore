@@ -28,6 +28,9 @@ yarn-error.log*
 # local env files
 .env*.local
 
+# gitignore
+.env
+
 # vercel
 .vercel
 
@@ -35,5 +38,3 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# gitignore
-.env
